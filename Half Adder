@@ -1,4 +1,5 @@
-Test Bench Code :
+--Test Bench Code :
+
 library IEEE;
 use IEEE.std_logic_1164.all;
 entity testbench is
@@ -38,7 +39,8 @@ begin
    end process; 
 end tb; 
 
-Design Code :
+--Design Code :
+
 library IEEE;
 use IEEE.std_logic_1164.all;
 entity ha is 
