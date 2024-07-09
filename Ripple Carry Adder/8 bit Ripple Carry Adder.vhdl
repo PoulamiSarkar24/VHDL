@@ -1,31 +1,3 @@
---Design Code:
-
-library IEEE;
-use IEEE.std_logic_1164.all;
-entity ripple_adder is
-port(
-	A : in STD_LOGIC_VECTOR(7 downto 0);
-	B : in STD_LOGIC_VECTOR(7 downto 0);
-	C_in : in STD_LOGIC;
-	Sum : out STD_LOGIC_VECTOR(7 downto 0);
-	C_out:out STD_LOGIC);
-end ripple_adder;
-architecture ripplearch of ripple_adder is
-signal c : STD_LOGIC_VECTOR(8 downto 0);
-begin
-	process(A,B,C_in,c)
-	variable i : integer;
-	begin
-		c(0) <= C_in;
-		for i in 0 to 7 loop
-		Sum(i) <= a(i) xor b(i) xor c(i);
-		c(i+1) <= (A(i) and B(i)) or (A(i) and c(i)) or (c(i) and B(i));
-	end loop;
-C_out <= c(8);
-end process;
-end ripplearch;
-
-
 --Testbench Code:
 
 library IEEE;
@@ -85,3 +57,30 @@ architecture tb of testbench is
         	wait;
            end process;
 end tb;
+
+--Design Code:
+
+library IEEE;
+use IEEE.std_logic_1164.all;
+entity ripple_adder is
+port(
+	A : in STD_LOGIC_VECTOR(7 downto 0);
+	B : in STD_LOGIC_VECTOR(7 downto 0);
+	C_in : in STD_LOGIC;
+	Sum : out STD_LOGIC_VECTOR(7 downto 0);
+	C_out:out STD_LOGIC);
+end ripple_adder;
+architecture ripplearch of ripple_adder is
+signal c : STD_LOGIC_VECTOR(8 downto 0);
+begin
+	process(A,B,C_in,c)
+	variable i : integer;
+	begin
+		c(0) <= C_in;
+		for i in 0 to 7 loop
+		Sum(i) <= a(i) xor b(i) xor c(i);
+		c(i+1) <= (A(i) and B(i)) or (A(i) and c(i)) or (c(i) and B(i));
+	end loop;
+C_out <= c(8);
+end process;
+end ripplearch;
